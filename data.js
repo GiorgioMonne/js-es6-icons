@@ -133,19 +133,19 @@ function play() {
 	// console.log(valore);
     switch(valore){
         case 1:
-			console.log('caso1');
+			// console.log('caso1');
             riempi('All'); 
             break;
         case 2: 
-			console.log('caso2');
+			// console.log('caso2');
 			riempi('Animali');
             break;
 		case 3: 
-			console.log('caso3');
+			// console.log('caso3');
 			riempi('Piante');
             break;
 		case 4:  
-			console.log('caso4');
+			// console.log('caso4');
 			riempi('Utente');
 	} 
 	      
@@ -156,27 +156,27 @@ function riempi(caso){
 	if(caso == 'All'){
 		for(let i = 0; i < carte.length;i++){
 			addCard(carte[i]);
-			console.log(i);
+			// console.log(i);
 		}
 	}else if(caso == 'Animali'){
 		for(let i = 0; i < carte.length;i++){
 			if(carte[i].type == 'animal'){
 				addCard(carte[i]);
-				console.log(i);
+				// console.log(i);
 			}
 		}
 	}else if(caso == 'Piante'){
 		for(let i = 0; i < carte.length;i++){
 			if(carte[i].type == 'vegetable'){
 				addCard(carte[i]);
-				console.log(i);
+				// console.log(i);
 			}
 		}
 	}else if(caso == 'Utente'){
 		for(let i = 0; i < carte.length;i++){
 			if(carte[i].type == 'user'){
 				addCard(carte[i]);
-				console.log(i);
+				// console.log(i);
 			}
 		}
 	}
@@ -186,18 +186,20 @@ function riempi(caso){
 function addCard(carta){
 
 	let card =`
-	<div class="box ${carta.color}">
-        <i class="${carta.family} ${carta.prefix}${carta.name}"></i>
+	<div class="box ${carta.type}">
+		<i style="color: ${get_random_color()}" class=" ${carta.family} ${carta.prefix}${carta.name}"></i>
         <span>${carta.name}</span>
     </div>`
-
 
 	document.querySelector('.container').innerHTML += card;
 }
 
-
-
-
-
-
-
+function get_random_color() {
+	function c() {
+	  let hex = Math.floor(Math.random()*256).toString(16);
+	  return ("0"+String(hex)).substr(-2); // pad with zero
+	}
+	// console.log("#"+c()+c()+c());
+	return "#"+c()+c()+c();
+	
+}
